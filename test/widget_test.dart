@@ -7,32 +7,11 @@
 
 
 
-import 'dart:io';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-import 'package:vendas/src/bean/produto_bean.dart';
+import 'package:vendas/src/dao/produto_dao.dart';
 
 Future<void> main() async {
 
-  final post = await http.post(
-      Uri.parse('http://localhost:8080/shopRest/produtos'),
-      headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-      'descricao': 'Proteinado',
-      }));
+  ProdutoDao().procuraProdutoViaSQLServer("Nucleo").asStream().forEach((element) {print(element);});
 
-  if (post.statusCode == 201) {
-
-    List<ProdutoBean> list  = (json.decode(post.body) as List).map((produtoBean) => ProdutoBean.converterJson(produtoBean)).toList();
-
-    list.forEach((element) {
-      print(element.descricao + '/n');
-    });
-
-
-
-  }
 }

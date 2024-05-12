@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vendas/src/view/pedido.dart';
 import 'package:vendas/src/view/pesquisa_produto_view.dart';
 
-import '../bean/produto_bean.dart';
-
 class Inicio extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
